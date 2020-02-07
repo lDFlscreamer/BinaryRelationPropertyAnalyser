@@ -32,6 +32,12 @@ public class Main {
 //                matrix[i][j] = Character.getNumericValue(chars[j]);
 //            }
 //        }
+        for (int[] ints : matrix) {
+            for (int anInt : ints) {
+                System.out.print(" " + anInt);
+            }
+            System.out.println();
+        }
         Result result = worker.analyse(matrix);
         result.printResult();
     }

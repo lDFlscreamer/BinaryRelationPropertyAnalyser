@@ -125,7 +125,7 @@ public class Result {
 
     public void analyse() {
         simetry = Pr.isEmpty() && (!Ir.isEmpty());
-        antisimetri = Ir.isEmpty() && (!Pr.isEmpty()) ;
+        antisimetri = Ir.isEmpty() && (!Pr.isEmpty());
         asimetri = antisimetri && (antireflection);
         transitivity = checktransitivity(slice);
         negativeTransitivity = checktransitivity(negativeSlice);
@@ -141,7 +141,7 @@ public class Result {
                 if (i.compareTo(j) == 0) {
                     continue;
                 }
-                ArrayList<Integer> inner = slice.getOrDefault(j, new ArrayList<Integer>());
+                ArrayList<Integer> inner = slice.getOrDefault(j, new ArrayList<>());
                 if (!current.containsAll(inner)) {
                     return false;
                 }
@@ -150,28 +150,24 @@ public class Result {
         return true;
     }
 
+    public String sliceToString(HashMap<Integer,ArrayList<Integer>> slice){
+        return slice.entrySet().stream().
+                map(hm1 -> "\t\t".concat(hm1.getKey().toString()).concat("->").concat(
+                        hm1.getValue().stream().map(Object::toString).reduce((n1, n2) -> n1.concat(",").concat(n2)).orElse("")
+                ))
+                .reduce((line1, line2) -> line1.concat("\n").concat(line2)).orElse("");
+
+    }
+
     public void printResult() {
         String PrLine = Pr.stream().map(RelationObj::toString).reduce((s1, s2) -> s1.concat(",").concat(s2)).orElse("empty");
         String IrLine = Ir.stream().map(RelationObj::toString).reduce((s1, s2) -> s1.concat(",").concat(s2)).orElse("empty");
         System.out.println("Pr=".concat(PrLine));
         System.out.println("Ir=".concat(IrLine));
-        String s = slice.entrySet().stream().
-                map(hm1 -> "\t\t".concat(hm1.getKey().toString()).concat("->").concat(
-                        hm1.getValue().stream().map(Object::toString).reduce((n1, n2) -> n1.concat(",").concat(n2)).orElse("")
-                ))
-                .reduce((line1, line2) -> line1.concat("\n").concat(line2)).orElse("");
-        String ns = negativeSlice.entrySet().stream().
-                map(hm1 -> "\t\t".concat(hm1.getKey().toString()).concat("->").concat(
-                        hm1.getValue().stream().map(Object::toString).reduce((n1, n2) -> n1.concat(",").concat(n2)).orElse("")
-                ))
-                .reduce((line1, line2) -> line1.concat("\n").concat(line2)).orElse("");
+        System.out.println("slice =\n".concat(this.sliceToString(slice)));
+        System.out.println("negative slice =\n".concat(this.sliceToString(negativeSlice)));
 
-
-        System.out.println("slice =\n".concat(s));
-        System.out.println("negative slice =\n".concat(ns));
-
-
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println("Reflexivity:".concat(reflection ? "+" : "-"));
         System.out.println("Antireflexivity:".concat(antireflection ? "+" : "-"));
         System.out.println("Simetry:".concat(simetry ? "+" : "-"));
