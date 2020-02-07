@@ -129,7 +129,7 @@ public class Result {
 
     public void analyse() {
         simetry = Pr.isEmpty() && (!Ir.isEmpty());
-        antisimetri = Ir.isEmpty() && (!Pr.isEmpty());
+        antisimetri = (Ir.isEmpty()||reflection) && (!Pr.isEmpty());
         asimetri = antisimetri && (antireflection);
         transitivity = checktransitivity(slice,transitivityExclusion);
         negativeTransitivity = checktransitivity(negativeSlice,negativeTransitivityExclusion);
