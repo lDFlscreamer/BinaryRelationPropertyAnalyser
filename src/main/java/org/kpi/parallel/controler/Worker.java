@@ -26,7 +26,6 @@ public class Worker {
                 if (matrix[i][j] == 1) {
                     if (matrix[j][i] == 1) {
                         Ir.add(new RelationObj(i + 1, j + 1));
-                        Ir.add(new RelationObj(j + 1, i + 1));
                     } else {
                         Pr.add(new RelationObj(i + 1, j + 1));
                     }
