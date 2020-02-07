@@ -7,6 +7,8 @@ public class Result {
     private ArrayList<RelationObj> Pr;
     private ArrayList<RelationObj> Ir;
     private HashMap<Integer, ArrayList<Integer>> slice;
+    private HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> transitivityExclusion;
+    private HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> negativeTransitivityExclusion;
     private HashMap<Integer, ArrayList<Integer>> negativeSlice;
     private boolean reflection;
     private boolean antireflection;
@@ -24,6 +26,8 @@ public class Result {
 
     public Result() {
         Pr = new ArrayList<>();
+        transitivityExclusion= new HashMap<>();
+        negativeTransitivityExclusion= new HashMap<>();
         Ir = new ArrayList<>();
     }
 
@@ -127,22 +131,28 @@ public class Result {
         simetry = Pr.isEmpty() && (!Ir.isEmpty());
         antisimetri = Ir.isEmpty() && (!Pr.isEmpty());
         asimetri = antisimetri && (antireflection);
-        transitivity = checktransitivity(slice);
-        negativeTransitivity = checktransitivity(negativeSlice);
+        transitivity = checktransitivity(slice,transitivityExclusion);
+        negativeTransitivity = checktransitivity(negativeSlice,negativeTransitivityExclusion);
     }
 
 
-    public boolean checktransitivity(HashMap<Integer, ArrayList<Integer>> slice) {
+    public boolean checktransitivity(HashMap<Integer, ArrayList<Integer>> slice,HashMap<Integer,HashMap<Integer, ArrayList<Integer>>> exclusion) {
         for (Integer i :
                 slice.keySet()) {
             ArrayList<Integer> current = slice.get(i);
+            current.remove(i);
             for (Integer j :
                     current) {
                 if (i.compareTo(j) == 0) {
                     continue;
                 }
                 ArrayList<Integer> inner = slice.getOrDefault(j, new ArrayList<>());
+                inner.remove(j);
                 if (!current.containsAll(inner)) {
+                    HashMap<Integer, ArrayList<Integer>> exclusionCurrent = exclusion.getOrDefault(i, new HashMap<>());
+                    inner.removeAll(current);
+                    exclusionCurrent.put(j,inner);
+                    exclusion.put(i,exclusionCurrent);
                     return false;
                 }
             }
@@ -154,6 +164,22 @@ public class Result {
         return slice.entrySet().stream().
                 map(hm1 -> "\t\t".concat(hm1.getKey().toString()).concat("->").concat(
                         hm1.getValue().stream().map(Object::toString).reduce((n1, n2) -> n1.concat(",").concat(n2)).orElse("")
+                ))
+                .reduce((line1, line2) -> line1.concat("\n").concat(line2)).orElse("");
+
+    }
+
+    public String exclusionToString(HashMap<Integer,HashMap<Integer, ArrayList<Integer>>> slice){
+        return slice.entrySet().stream().
+                map(hm1 -> "\t\t".concat(hm1.getKey().toString()).concat("->").concat(
+                                        hm1.getValue().entrySet().stream().map(
+                                                hm2->"\n\t\t\t\t".concat(
+                                                        hm2.getKey().toString()).concat("->")
+                                                        .concat(
+                                                        hm2.getValue().stream().map(Object::toString)
+                                                                .reduce((n1,n2)->n1.concat(",").concat(n2)).orElse(" ")
+                                                )).reduce((line1,line2)->line1.concat("").concat(line2)).orElse(" ")
+                                //.stream().map(Object::toString).reduce((n1, n2) -> n1.concat(",").concat(n2)).orElse("")
                 ))
                 .reduce((line1, line2) -> line1.concat("\n").concat(line2)).orElse("");
 
@@ -174,6 +200,8 @@ public class Result {
         System.out.println("aSimetry:".concat(asimetri ? "+" : "-"));
         System.out.println("antiSimetry:".concat(antisimetri ? "+" : "-"));
         System.out.println("Transitivity:".concat(transitivity ? "+" : "-"));
+        System.out.println(transitivity?"":this.exclusionToString(transitivityExclusion));
         System.out.println("negative Transitivity:".concat(negativeTransitivity ? "+" : "-"));
+        System.out.println(negativeTransitivity?"":this.exclusionToString(negativeTransitivityExclusion));
     }
 }
