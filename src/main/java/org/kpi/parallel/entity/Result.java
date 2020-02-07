@@ -140,18 +140,17 @@ public class Result {
         for (Integer i :
                 slice.keySet()) {
             ArrayList<Integer> current = slice.get(i);
-            current.remove(i);
             for (Integer j :
                     current) {
                 if (i.compareTo(j) == 0) {
                     continue;
                 }
                 ArrayList<Integer> inner = slice.getOrDefault(j, new ArrayList<>());
-                inner.remove(j);
                 if (!current.containsAll(inner)) {
                     HashMap<Integer, ArrayList<Integer>> exclusionCurrent = exclusion.getOrDefault(i, new HashMap<>());
-                    inner.removeAll(current);
-                    exclusionCurrent.put(j,inner);
+                    ArrayList<Integer> innerCheck = new ArrayList<>(inner);
+                    innerCheck.removeAll(current);
+                    exclusionCurrent.put(j,innerCheck);
                     exclusion.put(i,exclusionCurrent);
                     return false;
                 }

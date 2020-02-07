@@ -1,7 +1,6 @@
 package org.kpi.parallel;
 
 
-
 import org.kpi.parallel.controler.Worker;
 import org.kpi.parallel.entity.Result;
 
