@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c)  2.2020
+  ~ This file (pom.xml) is part of BinaryRelationPropertyAnalyser.
+  ~ Unauthorized copying of this file, via any medium is strictly prohibited
+  ~ Proprietary and confidential
+  ~  Written by Screamer  <999screamer999@gmail.com>
+  -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.kpi.parallel</groupId>
-    <artifactId>parallel</artifactId>
+    <groupId>org.kpi.TheoryOfDecision</groupId>
+    <artifactId>BinaryRelationPropertyAnalyser</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
