@@ -1,8 +1,8 @@
-package org.kpi.parallel;
+package org.kpi.TheoryOfDecision;
 
 
-import org.kpi.parallel.controler.Worker;
-import org.kpi.parallel.entity.Result;
+import org.kpi.TheoryOfDecision.controler.Worker;
+import org.kpi.TheoryOfDecision.entity.Result;
 
 import java.util.Scanner;
 

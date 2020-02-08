@@ -1,4 +1,4 @@
-package org.kpi.parallel.entity;
+package org.kpi.TheoryOfDecision.entity;
 
 public class RelationObj {
     private int first;

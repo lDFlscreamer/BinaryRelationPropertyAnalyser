@@ -1,8 +1,8 @@
-package org.kpi.parallel.controler;
+package org.kpi.TheoryOfDecision.controler;
 
 
-import org.kpi.parallel.entity.RelationObj;
-import org.kpi.parallel.entity.Result;
+import org.kpi.TheoryOfDecision.entity.RelationObj;
+import org.kpi.TheoryOfDecision.entity.Result;
 
 import java.util.ArrayList;
 import java.util.HashMap;

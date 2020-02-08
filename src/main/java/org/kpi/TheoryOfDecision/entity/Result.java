@@ -1,4 +1,4 @@
-package org.kpi.parallel.entity;
+package org.kpi.TheoryOfDecision.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
