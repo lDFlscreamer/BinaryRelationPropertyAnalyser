@@ -3,7 +3,7 @@
  * This file (Worker) is part of BinaryRelationPropertyAnalyser.
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
- *  Written by Screamer  <999screamer999@gmail.com>
+ * Written by Screamer  <999screamer999@gmail.com>
  */
 
 package org.kpi.TheoryOfDecision.controler;

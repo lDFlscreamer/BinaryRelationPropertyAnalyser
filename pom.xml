@@ -4,7 +4,7 @@
   ~ This file (pom.xml) is part of BinaryRelationPropertyAnalyser.
   ~ Unauthorized copying of this file, via any medium is strictly prohibited
   ~ Proprietary and confidential
-  ~  Written by Screamer  <999screamer999@gmail.com>
+  ~ Written by Screamer  <999screamer999@gmail.com>
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
