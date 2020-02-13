@@ -8,6 +8,8 @@
 
 package org.kpi.TheoryOfDecision.entity;
 
+import java.util.List;
+
 public class RawResult extends BasicRelationProperty {
 	private String transitivityExclusion;
 	private String negativeTransitivityExclusion;
@@ -17,7 +19,8 @@ public class RawResult extends BasicRelationProperty {
 	private String negativeSlice;
 	private String Slice;
 
-	public RawResult() {
+	public RawResult(List<?> inputedMatrix) {
+		super(inputedMatrix);
 	}
 
 	public String getTransitivityExclusion() {

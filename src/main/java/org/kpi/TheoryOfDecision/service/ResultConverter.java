@@ -14,7 +14,6 @@ import org.kpi.TheoryOfDecision.entity.RelationObj;
 import org.kpi.TheoryOfDecision.entity.Result;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class ResultConverter {
 		return arr.stream().map(RelationObj::toString).reduce((s1, s2) -> s1.concat(",").concat(s2)).orElse("empty");
 	}
 	public RawResult convert(Result result) {
-		RawResult rawResult=new RawResult();
+		RawResult rawResult=new RawResult(result.getMatrix());
 
 		rawResult.setPr(relationPartToString(result.getPr()));
 		rawResult.setIr(relationPartToString(result.getIr()));
@@ -61,7 +60,7 @@ public class ResultConverter {
 		rawResult.setReflectivity(result.isReflectivity());
 		rawResult.setAntireflectivity(result.isAntireflectivity());
 
-		rawResult.setSimmetry(result.isSimmetri());
+		rawResult.setSimmetry(result.isSimmetry());
 		rawResult.setAsimmetry(result.isAsimmetry());
 		rawResult.setAntisimmetry(result.isAntisimmetry());
 

@@ -8,10 +8,13 @@
 
 package org.kpi.TheoryOfDecision.entity;
 
+import java.util.List;
+
 public class BasicRelationProperty {
+	private final List<?> matrix;
 	protected boolean reflectivity;
 	protected boolean antireflectivity;
-	protected boolean simmetri;
+	protected boolean simmetry;
 	protected boolean asimmetry;
 	protected boolean antisimmetry;
 	protected boolean acyclicity;
@@ -19,6 +22,14 @@ public class BasicRelationProperty {
 	protected boolean weakConnectedness;
 	protected boolean transitivity;
 	protected boolean negativeTransitivity;
+
+	public BasicRelationProperty(List<?> matrix) {
+		this.matrix = matrix;
+	}
+
+	public List<?> getMatrix() {
+		return matrix;
+	}
 
 	public boolean isReflectivity() {
 		return reflectivity;
@@ -36,12 +47,12 @@ public class BasicRelationProperty {
 		this.antireflectivity = antireflectivity;
 	}
 
-	public boolean isSimmetri() {
-		return simmetri;
+	public boolean isSimmetry() {
+		return simmetry;
 	}
 
-	public void setSimmetri(boolean simmetri) {
-		this.simmetri = simmetri;
+	public void setSimmetry(boolean simmetry) {
+		this.simmetry = simmetry;
 	}
 
 	public boolean isAsimmetry() {

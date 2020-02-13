@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Result extends BasicRelationProperty {
-	private final List<?> inputedMatrix;
+
 	private List<RelationObj> Pr;
 	private List<RelationObj> Ir;
 	private List<RelationObj> Nr;
@@ -24,22 +24,20 @@ public class Result extends BasicRelationProperty {
 	private HashMap<Integer, HashMap<Integer, List<Integer>>> negativeTransitivityExclusion;
 	private HashMap<Integer, List<Integer>> negativeSlice;
 
-
 	public Result(List<List<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
-		this.inputedMatrix = inputedMatrix;
+		super(inputedMatrix);
 		this.Pr = pr;
 		this.Ir = ir;
 		this.slice = slice;
 	}
 
 	public Result(List<?> inputedMatrix) {
-		this.inputedMatrix = inputedMatrix;
+		super(inputedMatrix);
 		Pr = new ArrayList<>();
 		transitivityExclusion = new HashMap<>();
 		negativeTransitivityExclusion = new HashMap<>();
 		Ir = new ArrayList<>();
 	}
-
 
 	public List<RelationObj> getNr() {
 		return Nr;
@@ -56,7 +54,6 @@ public class Result extends BasicRelationProperty {
 	public void setNegativeSlice(HashMap<Integer, List<Integer>> negativeSlice) {
 		this.negativeSlice = negativeSlice;
 	}
-
 
 	public List<RelationObj> getPr() {
 		return Pr;
@@ -83,7 +80,7 @@ public class Result extends BasicRelationProperty {
 	}
 
 	public void analyse() {
-		simmetri = Pr.isEmpty() && (!Ir.isEmpty());
+		simmetry = Pr.isEmpty() && (!Ir.isEmpty());
 		antisimmetry = (Ir.isEmpty() || reflectivity) && (!Pr.isEmpty());
 		asimmetry = antisimmetry && (antireflectivity);
 		Predicate<RelationObj> nonDiagonal = rel -> rel.getFirst() != rel.getSecond();
@@ -124,6 +121,4 @@ public class Result extends BasicRelationProperty {
 		}
 		return true;
 	}
-
-
 }

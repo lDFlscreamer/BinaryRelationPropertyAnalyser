@@ -65,7 +65,7 @@ public class PropertyAnalyser {
         res.setIr(Ir);
         res.setNr(Nr);
         res.setReflectivity(refl);
-        res.setAntiReflection(antirefl);
+        res.setAntireflectivity(antirefl);
         res.setNegativeSlice(negativeSlice);
         res.analyse();
         return res;

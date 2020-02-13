@@ -14,7 +14,6 @@ public class RelationClassResult extends Result {
 
 	private String className;
 
-
 	public RelationClassResult(List<?> inputedMatrix) {
 		super(inputedMatrix);
 	}
