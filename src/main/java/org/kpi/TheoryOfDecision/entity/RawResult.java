@@ -23,8 +23,15 @@ public class RawResult {
 	private boolean antisimmetry;
 	private boolean transitivity;
 	private boolean negativeTransitivity;
+	private boolean connectedness;
+	private boolean weakConnectedness;
+	private boolean acyclicity;
 
 	public RawResult() {
+	}
+
+	public void setAcyclicity(boolean acyclicity) {
+		this.acyclicity = acyclicity;
 	}
 
 	public String getTransitivityExclusion() {
@@ -73,6 +80,14 @@ public class RawResult {
 
 	public void setNegativeSlice(String negativeSlice) {
 		this.negativeSlice = negativeSlice;
+	}
+
+	public void setConnectedness(boolean connectedness) {
+		this.connectedness = connectedness;
+	}
+
+	public void setWeakConnectedness(boolean weakConnectedness) {
+		this.weakConnectedness = weakConnectedness;
 	}
 
 	public String getSlice() {

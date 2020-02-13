@@ -8,11 +8,23 @@
 
 package org.kpi.TheoryOfDecision.entity;
 
+import java.util.List;
+
 public class RelationClassResult extends Result {
 
-		private String className;
+	private String className;
 
-		public void ClassAnalyser(){
-			//todo:write code  for anaalyse
-		}
+
+	public RelationClassResult(List<?> inputedMatrix) {
+		super(inputedMatrix);
+	}
+
+	public RelationClassResult(List<?> inputedMatrix, String className) {
+		super(inputedMatrix);
+		this.className = className;
+	}
+
+	public void ClassAnalyser() {
+		//todo:write code  for anaalyse
+	}
 }

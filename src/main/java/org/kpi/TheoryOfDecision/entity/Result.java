@@ -10,55 +10,70 @@ package org.kpi.TheoryOfDecision.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Result {
-	private ArrayList inputedMatrix;
-	private ArrayList<RelationObj> Pr;
-	private ArrayList<RelationObj> Ir;
-	private ArrayList<RelationObj> Nr;
-	private HashMap<Integer, ArrayList<Integer>> slice;
-	private HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> transitivityExclusion;
-	private HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> negativeTransitivityExclusion;
-	private HashMap<Integer, ArrayList<Integer>> negativeSlice;
+	private final List<?> inputedMatrix;
+	private List<RelationObj> Pr;
+	private List<RelationObj> Ir;
+	private List<RelationObj> Nr;
+	private HashMap<Integer, List<Integer>> slice;
+	private HashMap<Integer, HashMap<Integer, List<Integer>>> transitivityExclusion;
+	private HashMap<Integer, HashMap<Integer, List<Integer>>> negativeTransitivityExclusion;
+	private HashMap<Integer, List<Integer>> negativeSlice;
 	private boolean reflectivity;
 	private boolean antireflectivity;
 	private boolean simmetri;
 	private boolean asimmetry;
 	private boolean antisimmetry;
+	private boolean acyclicity;
+	private boolean connectedness;
+	private boolean weakConnectedness;
 	private boolean transitivity;
 	private boolean negativeTransitivity;
 
-	public Result(ArrayList<RelationObj> pr, ArrayList<RelationObj> ir, HashMap<Integer, ArrayList<Integer>> slice) {
-		Pr = pr;
-		Ir = ir;
+	public Result(List<List<Integer>> inputedMatrix,List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
+		this.inputedMatrix = inputedMatrix;
+		this.Pr = pr;
+		this.Ir = ir;
 		this.slice = slice;
 	}
 
-	public Result() {
+	public Result(List<?> inputedMatrix) {
+		this.inputedMatrix = inputedMatrix;
 		Pr = new ArrayList<>();
 		transitivityExclusion = new HashMap<>();
 		negativeTransitivityExclusion = new HashMap<>();
 		Ir = new ArrayList<>();
 	}
 
-	public ArrayList<RelationObj> getNr() {
+	public boolean isAcyclicity() {
+		return acyclicity;
+	}
+
+	public boolean isConnectedness() {
+		return connectedness;
+	}
+
+	public boolean isWeakConnectedness() {
+		return weakConnectedness;
+	}
+
+	public List<RelationObj> getNr() {
 		return Nr;
 	}
 
-	public void setNr(ArrayList<RelationObj> nr) {
+	public void setNr(List<RelationObj> nr) {
 		Nr = nr;
 	}
 
-
-	public void setInputedMatrix(ArrayList inputedMatrix) {
-		this.inputedMatrix = inputedMatrix;
-	}
-
-	public HashMap<Integer, ArrayList<Integer>> getNegativeSlice() {
+	public HashMap<Integer, List<Integer>> getNegativeSlice() {
 		return negativeSlice;
 	}
 
-	public void setNegativeSlice(HashMap<Integer, ArrayList<Integer>> negativeSlice) {
+	public void setNegativeSlice(HashMap<Integer, List<Integer>> negativeSlice) {
 		this.negativeSlice = negativeSlice;
 	}
 
@@ -98,27 +113,27 @@ public class Result {
 		return transitivity;
 	}
 
-	public ArrayList<RelationObj> getPr() {
+	public List<RelationObj> getPr() {
 		return Pr;
 	}
 
-	public void setPr(ArrayList<RelationObj> pr) {
+	public void setPr(List<RelationObj> pr) {
 		Pr = pr;
 	}
 
-	public ArrayList<RelationObj> getIr() {
+	public List<RelationObj> getIr() {
 		return Ir;
 	}
 
-	public void setIr(ArrayList<RelationObj> ir) {
+	public void setIr(List<RelationObj> ir) {
 		Ir = ir;
 	}
 
-	public HashMap<Integer, ArrayList<Integer>> getSlice() {
+	public HashMap<Integer, List<Integer>> getSlice() {
 		return slice;
 	}
 
-	public void setSlice(HashMap<Integer, ArrayList<Integer>> slice) {
+	public void setSlice(HashMap<Integer, List<Integer>> slice) {
 		this.slice = slice;
 	}
 
@@ -126,30 +141,34 @@ public class Result {
 		simmetri = Pr.isEmpty() && (!Ir.isEmpty());
 		antisimmetry = (Ir.isEmpty() || reflectivity) && (!Pr.isEmpty());
 		asimmetry = antisimmetry && (antireflectivity);
+		Predicate<RelationObj> nonDiagonal = rel -> rel.getFirst() != rel.getSecond();
+		List<RelationObj> NrWithOutDiagonal = Nr.stream().filter(nonDiagonal).collect(Collectors.toList());
+		connectedness = Nr.isEmpty();
+		weakConnectedness = NrWithOutDiagonal.isEmpty();
 		transitivity = checktransitivity(slice, transitivityExclusion);
 		negativeTransitivity = checktransitivity(negativeSlice, negativeTransitivityExclusion);
 	}
 
-	public HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> getTransitivityExclusion() {
+	public HashMap<Integer, HashMap<Integer, List<Integer>>> getTransitivityExclusion() {
 		return transitivityExclusion;
 	}
 
-	public HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> getNegativeTransitivityExclusion() {
+	public HashMap<Integer, HashMap<Integer, List<Integer>>> getNegativeTransitivityExclusion() {
 		return negativeTransitivityExclusion;
 	}
 
-	public boolean checktransitivity(HashMap<Integer, ArrayList<Integer>> slice, HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> exclusion) {
+	public boolean checktransitivity(HashMap<Integer, List<Integer>> slice, HashMap<Integer, HashMap<Integer, List<Integer>>> exclusion) {
 		for (Integer i :
 				slice.keySet()) {
-			ArrayList<Integer> current = slice.get(i);
+			List<Integer> current = slice.get(i);
 			for (Integer j :
 					current) {
 				if (i.compareTo(j) == 0) {
 					continue;
 				}
-				ArrayList<Integer> inner = slice.getOrDefault(j, new ArrayList<>());
+				List<Integer> inner = slice.getOrDefault(j, new ArrayList<>());
 				if (!current.containsAll(inner)) {
-					HashMap<Integer, ArrayList<Integer>> exclusionCurrent = exclusion.getOrDefault(i, new HashMap<>());
+					HashMap<Integer, List<Integer>> exclusionCurrent = exclusion.getOrDefault(i, new HashMap<>());
 					ArrayList<Integer> innerCheck = new ArrayList<>(inner);
 					innerCheck.removeAll(current);
 					exclusionCurrent.put(j, innerCheck);
