@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Result {
+public class Result extends BasicRelationProperty {
 	private final List<?> inputedMatrix;
 	private List<RelationObj> Pr;
 	private List<RelationObj> Ir;
@@ -23,18 +23,9 @@ public class Result {
 	private HashMap<Integer, HashMap<Integer, List<Integer>>> transitivityExclusion;
 	private HashMap<Integer, HashMap<Integer, List<Integer>>> negativeTransitivityExclusion;
 	private HashMap<Integer, List<Integer>> negativeSlice;
-	private boolean reflectivity;
-	private boolean antireflectivity;
-	private boolean simmetri;
-	private boolean asimmetry;
-	private boolean antisimmetry;
-	private boolean acyclicity;
-	private boolean connectedness;
-	private boolean weakConnectedness;
-	private boolean transitivity;
-	private boolean negativeTransitivity;
 
-	public Result(List<List<Integer>> inputedMatrix,List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
+
+	public Result(List<List<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
 		this.inputedMatrix = inputedMatrix;
 		this.Pr = pr;
 		this.Ir = ir;
@@ -49,17 +40,6 @@ public class Result {
 		Ir = new ArrayList<>();
 	}
 
-	public boolean isAcyclicity() {
-		return acyclicity;
-	}
-
-	public boolean isConnectedness() {
-		return connectedness;
-	}
-
-	public boolean isWeakConnectedness() {
-		return weakConnectedness;
-	}
 
 	public List<RelationObj> getNr() {
 		return Nr;
@@ -77,41 +57,6 @@ public class Result {
 		this.negativeSlice = negativeSlice;
 	}
 
-	public boolean isNegativeTransitivity() {
-		return negativeTransitivity;
-	}
-
-	public boolean isReflectivity() {
-		return reflectivity;
-	}
-
-	public void setReflectivity(boolean reflectivity) {
-		this.reflectivity = reflectivity;
-	}
-
-	public boolean isAntireflectivity() {
-		return antireflectivity;
-	}
-
-	public void setAntiReflection(boolean antireflection) {
-		this.antireflectivity = antireflection;
-	}
-
-	public boolean isSimmetri() {
-		return simmetri;
-	}
-
-	public boolean isAsimmetry() {
-		return asimmetry;
-	}
-
-	public boolean isAntisimmetry() {
-		return antisimmetry;
-	}
-
-	public boolean isTransitivity() {
-		return transitivity;
-	}
 
 	public List<RelationObj> getPr() {
 		return Pr;

@@ -8,7 +8,7 @@
 
 package org.kpi.TheoryOfDecision.entity;
 
-public class RawResult {
+public class RawResult extends BasicRelationProperty {
 	private String transitivityExclusion;
 	private String negativeTransitivityExclusion;
 	private String Pr;
@@ -16,22 +16,8 @@ public class RawResult {
 	private String Nr;
 	private String negativeSlice;
 	private String Slice;
-	private boolean reflectivity;
-	private boolean antireflectivity;
-	private boolean simmetry;
-	private boolean asimmetry;
-	private boolean antisimmetry;
-	private boolean transitivity;
-	private boolean negativeTransitivity;
-	private boolean connectedness;
-	private boolean weakConnectedness;
-	private boolean acyclicity;
 
 	public RawResult() {
-	}
-
-	public void setAcyclicity(boolean acyclicity) {
-		this.acyclicity = acyclicity;
 	}
 
 	public String getTransitivityExclusion() {
@@ -82,75 +68,11 @@ public class RawResult {
 		this.negativeSlice = negativeSlice;
 	}
 
-	public void setConnectedness(boolean connectedness) {
-		this.connectedness = connectedness;
-	}
-
-	public void setWeakConnectedness(boolean weakConnectedness) {
-		this.weakConnectedness = weakConnectedness;
-	}
-
 	public String getSlice() {
 		return Slice;
 	}
 
 	public void setSlice(String slice) {
 		Slice = slice;
-	}
-
-	public boolean isReflectivity() {
-		return reflectivity;
-	}
-
-	public void setReflectivity(boolean reflectivity) {
-		this.reflectivity = reflectivity;
-	}
-
-	public boolean isAntireflectivity() {
-		return antireflectivity;
-	}
-
-	public void setAntireflectivity(boolean antireflectivity) {
-		this.antireflectivity = antireflectivity;
-	}
-
-	public boolean isSimmetry() {
-		return simmetry;
-	}
-
-	public void setSimmetry(boolean simmetry) {
-		this.simmetry = simmetry;
-	}
-
-	public boolean isAsimmetry() {
-		return asimmetry;
-	}
-
-	public void setAsimmetry(boolean asimmetry) {
-		this.asimmetry = asimmetry;
-	}
-
-	public boolean isAntisimmetry() {
-		return antisimmetry;
-	}
-
-	public void setAntisimmetry(boolean antisimmetry) {
-		this.antisimmetry = antisimmetry;
-	}
-
-	public boolean isTransitivity() {
-		return transitivity;
-	}
-
-	public void setTransitivity(boolean transitivity) {
-		this.transitivity = transitivity;
-	}
-
-	public boolean isNegativeTransitivity() {
-		return negativeTransitivity;
-	}
-
-	public void setNegativeTransitivity(boolean negativeTransitivity) {
-		this.negativeTransitivity = negativeTransitivity;
 	}
 }

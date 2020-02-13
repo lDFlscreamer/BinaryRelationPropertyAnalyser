@@ -30,8 +30,8 @@ public class MainController {
 
 	@GetMapping("/AnalyseRelation")
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public Result analyse() {
-		int[][] matrix = {
+	public int[][] analyse() {
+		return new int[][]{
 				{1, 0, 1, 1, 1, 0, 1},
 				{0, 1, 1, 1, 1, 0, 1},
 				{0, 0, 1, 1, 0, 0, 0},
@@ -40,10 +40,6 @@ public class MainController {
 				{1, 1, 1, 1, 1, 1, 1},
 				{0, 0, 1, 1, 1, 0, 1}
 		};
-
-		Result result;
-		result = PropertyAnalyser.analyse(matrix);
-		return result;
 	}
 
 
