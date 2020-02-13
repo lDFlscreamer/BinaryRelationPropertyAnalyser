@@ -10,7 +10,7 @@ package org.kpi.TheoryOfDecision.entity;
 
 import java.util.List;
 
-public class RawResult extends BasicRelationProperty {
+public class RawResult extends BasicRelationProperties {
 	private String transitivityExclusion;
 	private String negativeTransitivityExclusion;
 	private String Pr;

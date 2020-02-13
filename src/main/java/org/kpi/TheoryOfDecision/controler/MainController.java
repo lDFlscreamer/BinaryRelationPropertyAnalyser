@@ -51,7 +51,7 @@ public class MainController {
 			return null;
 		}
 		Result result;
-		result = propertyAnalyser.analyse((ArrayList<ArrayList<Integer>>) matrix);
+		result = propertyAnalyser.getBasicProperties((ArrayList<ArrayList<Integer>>) matrix);
 		logger.info("Analyse matrix ");
 		return result;
 	}

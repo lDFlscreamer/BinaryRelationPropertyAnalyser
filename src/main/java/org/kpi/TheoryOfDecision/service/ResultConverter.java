@@ -60,9 +60,9 @@ public class ResultConverter {
 		rawResult.setReflectivity(result.isReflectivity());
 		rawResult.setAntireflectivity(result.isAntireflectivity());
 
-		rawResult.setSimmetry(result.isSimmetry());
-		rawResult.setAsimmetry(result.isAsimmetry());
-		rawResult.setAntisimmetry(result.isAntisimmetry());
+		rawResult.setSymmetry(result.isSymmetry());
+		rawResult.setAsymmetry(result.isAsymmetry());
+		rawResult.setAntisymmetry(result.isAntisymmetry());
 
 		rawResult.setConnectedness(result.isConnectedness());
 		rawResult.setWeakConnectedness(result.isWeakConnectedness());

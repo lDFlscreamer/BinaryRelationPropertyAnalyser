@@ -10,20 +10,20 @@ package org.kpi.TheoryOfDecision.entity;
 
 import java.util.List;
 
-public class BasicRelationProperty {
+public class BasicRelationProperties {
 	private final List<?> matrix;
 	protected boolean reflectivity;
 	protected boolean antireflectivity;
-	protected boolean simmetry;
-	protected boolean asimmetry;
-	protected boolean antisimmetry;
+	protected boolean symmetry;
+	protected boolean asymmetry;
+	protected boolean antisymmetry;
 	protected boolean acyclicity;
 	protected boolean connectedness;
 	protected boolean weakConnectedness;
 	protected boolean transitivity;
 	protected boolean negativeTransitivity;
 
-	public BasicRelationProperty(List<?> matrix) {
+	public BasicRelationProperties(List<?> matrix) {
 		this.matrix = matrix;
 	}
 
@@ -47,28 +47,28 @@ public class BasicRelationProperty {
 		this.antireflectivity = antireflectivity;
 	}
 
-	public boolean isSimmetry() {
-		return simmetry;
+	public boolean isSymmetry() {
+		return symmetry;
 	}
 
-	public void setSimmetry(boolean simmetry) {
-		this.simmetry = simmetry;
+	public void setSymmetry(boolean symmetry) {
+		this.symmetry = symmetry;
 	}
 
-	public boolean isAsimmetry() {
-		return asimmetry;
+	public boolean isAsymmetry() {
+		return asymmetry;
 	}
 
-	public void setAsimmetry(boolean asimmetry) {
-		this.asimmetry = asimmetry;
+	public void setAsymmetry(boolean asymmetry) {
+		this.asymmetry = asymmetry;
 	}
 
-	public boolean isAntisimmetry() {
-		return antisimmetry;
+	public boolean isAntisymmetry() {
+		return antisymmetry;
 	}
 
-	public void setAntisimmetry(boolean antisimmetry) {
-		this.antisimmetry = antisimmetry;
+	public void setAntisymmetry(boolean antisymmetry) {
+		this.antisymmetry = antisymmetry;
 	}
 
 	public boolean isAcyclicity() {

@@ -24,6 +24,13 @@ public class RelationClassResult extends Result {
 	}
 
 	public void ClassAnalyser() {
-		//todo:write code  for anaalyse
+		//biggest
+		if (this.getIr().isEmpty()) {
+			// TODO: 13.02.2020 find biggest on asimmetry part
+		} else {
+			// TODO: 13.02.2020 find biggest on relation
+		}
+		//maximum element
+
 	}
 }

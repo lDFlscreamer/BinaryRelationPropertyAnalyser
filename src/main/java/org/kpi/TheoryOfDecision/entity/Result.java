@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class Result extends BasicRelationProperty {
+public class Result extends BasicRelationProperties {
 
 	private List<RelationObj> Pr;
 	private List<RelationObj> Ir;
@@ -79,18 +79,6 @@ public class Result extends BasicRelationProperty {
 		this.slice = slice;
 	}
 
-	public void analyse() {
-		simmetry = Pr.isEmpty() && (!Ir.isEmpty());
-		antisimmetry = (Ir.isEmpty() || reflectivity) && (!Pr.isEmpty());
-		asimmetry = antisimmetry && (antireflectivity);
-		Predicate<RelationObj> nonDiagonal = rel -> rel.getFirst() != rel.getSecond();
-		List<RelationObj> NrWithOutDiagonal = Nr.stream().filter(nonDiagonal).collect(Collectors.toList());
-		connectedness = Nr.isEmpty();
-		weakConnectedness = NrWithOutDiagonal.isEmpty();
-		transitivity = checktransitivity(slice, transitivityExclusion);
-		negativeTransitivity = checktransitivity(negativeSlice, negativeTransitivityExclusion);
-	}
-
 	public HashMap<Integer, HashMap<Integer, List<Integer>>> getTransitivityExclusion() {
 		return transitivityExclusion;
 	}
@@ -99,26 +87,4 @@ public class Result extends BasicRelationProperty {
 		return negativeTransitivityExclusion;
 	}
 
-	public boolean checktransitivity(HashMap<Integer, List<Integer>> slice, HashMap<Integer, HashMap<Integer, List<Integer>>> exclusion) {
-		for (Integer i :
-				slice.keySet()) {
-			List<Integer> current = slice.get(i);
-			for (Integer j :
-					current) {
-				if (i.compareTo(j) == 0) {
-					continue;
-				}
-				List<Integer> inner = slice.getOrDefault(j, new ArrayList<>());
-				if (!current.containsAll(inner)) {
-					HashMap<Integer, List<Integer>> exclusionCurrent = exclusion.getOrDefault(i, new HashMap<>());
-					ArrayList<Integer> innerCheck = new ArrayList<>(inner);
-					innerCheck.removeAll(current);
-					exclusionCurrent.put(j, innerCheck);
-					exclusion.put(i, exclusionCurrent);
-					return false;
-				}
-			}
-		}
-		return true;
-	}
 }
