@@ -24,13 +24,11 @@ public class RelationClassPropertiesResult extends PropertiesResult {
 		this.className = className;
 	}
 
-	public void ClassAnalyser() {
-		//biggest
-		if (this.getIr().isEmpty()) {
-			// TODO: 13.02.2020 find biggest on asymmetry part
-		} else {
-			// TODO: 13.02.2020 find biggest on relation
-		}
-		//maximum element
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
 	}
 }

@@ -8,6 +8,7 @@
 
 package org.kpi.TheoryOfDecision.controler;
 
+import org.kpi.TheoryOfDecision.entity.binaryClassResult.RelationClassPropertiesResult;
 import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 import org.kpi.TheoryOfDecision.service.BinaryRelationPropertyAnalyser;
 import org.slf4j.Logger;
@@ -17,7 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/")
@@ -30,8 +34,8 @@ public class MainController {
 
 	@GetMapping("/AnalyseRelation")
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public int[][] analyse() {
-		return new int[][]{
+	public List<?> analyse() {
+		int[][] ints = {
 				{1, 0, 1, 1, 1, 0, 1},
 				{0, 1, 1, 1, 1, 0, 1},
 				{0, 0, 1, 1, 0, 0, 0},
@@ -40,8 +44,15 @@ public class MainController {
 				{1, 1, 1, 1, 1, 1, 1},
 				{0, 0, 1, 1, 1, 0, 1}
 		};
+		return Arrays.stream(ints).map((s1) -> Arrays.stream(s1).boxed().collect(Collectors.toList())).collect(Collectors.toList());
 	}
 
+
+	@GetMapping("/test")
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public RelationClassPropertiesResult test() {
+		return null;
+	}
 
 	@PostMapping("/AnalyseRelation")
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
@@ -50,8 +61,8 @@ public class MainController {
 		if (matrix == null) {
 			return null;
 		}
-		PropertiesResult result;
-		result = propertyAnalyser.getBasicProperties((ArrayList<ArrayList<Integer>>) matrix);
+		PropertiesResult result=new RelationClassPropertiesResult((ArrayList<ArrayList<Integer>>) matrix);
+		result = propertyAnalyser.getBasicProperties(result);
 		logger.info("Analyse matrix ");
 		return result;
 	}

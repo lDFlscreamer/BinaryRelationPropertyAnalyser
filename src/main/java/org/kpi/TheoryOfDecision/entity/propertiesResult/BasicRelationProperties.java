@@ -10,7 +10,7 @@ package org.kpi.TheoryOfDecision.entity.propertiesResult;
 import java.util.List;
 
 public class BasicRelationProperties {
-	private final List<?> matrix;
+	private final List<List<Integer>> matrix;
 	protected boolean reflectivity;
 	protected boolean antireflectivity;
 	protected boolean symmetry;
@@ -22,11 +22,11 @@ public class BasicRelationProperties {
 	protected boolean transitivity;
 	protected boolean negativeTransitivity;
 
-	public BasicRelationProperties(List<?> matrix) {
+	public BasicRelationProperties(List<List<Integer>> matrix) {
 		this.matrix = matrix;
 	}
 
-	public List<?> getMatrix() {
+	public List<List<Integer>> getMatrix() {
 		return matrix;
 	}
 

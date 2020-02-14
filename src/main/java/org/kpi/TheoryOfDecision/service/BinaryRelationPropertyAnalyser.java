@@ -25,10 +25,10 @@ import java.util.stream.Collectors;
 @Service
 public class BinaryRelationPropertyAnalyser {
 
-    private static final Logger logger = LoggerFactory.getLogger(BinaryRelationPropertyAnalyser.class);
+	private static final Logger logger = LoggerFactory.getLogger(BinaryRelationPropertyAnalyser.class);
 
-	public PropertiesResult getBasicProperties(ArrayList<ArrayList<Integer>> matrix) {
-		PropertiesResult res = new PropertiesResult(matrix);
+	public PropertiesResult getBasicProperties(PropertiesResult res) {
+		List<List<Integer>> matrix = res.getMatrix();
 		ArrayList<RelationObj> Pr = new ArrayList<>();
 		ArrayList<RelationObj> Ir = new ArrayList<>();
 		ArrayList<RelationObj> Nr = new ArrayList<>();
@@ -131,7 +131,7 @@ public class BinaryRelationPropertyAnalyser {
 			result.setNegativeTransitivity(negativeTransitivity);
 			return true;
 		} catch (Exception e) {
-		    logger.error(String.format("Cause error: %s", e.getMessage()),e);
+			logger.error(String.format("Cause error: %s", e.getMessage()), e);
 		}
 		return false;
 	}

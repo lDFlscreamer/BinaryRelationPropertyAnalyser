@@ -21,7 +21,7 @@ public class RawResult extends BasicRelationProperties {
 	private String negativeSlice;
 	private String Slice;
 
-	public RawResult(List<?> inputedMatrix) {
+	public RawResult(List inputedMatrix) {
 		super(inputedMatrix);
 	}
 

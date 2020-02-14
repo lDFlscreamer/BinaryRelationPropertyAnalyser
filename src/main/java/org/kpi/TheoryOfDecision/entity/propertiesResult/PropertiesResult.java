@@ -31,7 +31,7 @@ public class PropertiesResult extends BasicRelationProperties {
 		this.slice = slice;
 	}
 
-	public PropertiesResult(List<?> inputedMatrix) {
+	public PropertiesResult(List inputedMatrix) {
 		super(inputedMatrix);
 		Pr = new ArrayList<>();
 		transitivityExclusion = new HashMap<>();
