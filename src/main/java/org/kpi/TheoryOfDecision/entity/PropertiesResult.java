@@ -1,20 +1,17 @@
 /*
  * Copyright (c)  2.2020
- * This file (Result) is part of BinaryRelationPropertyAnalyser.
+ * This file (PropertiesResult) is part of BinaryRelationPropertyAnalyser.
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  * Written by Screamer  <999screamer999@gmail.com>
  */
-
 package org.kpi.TheoryOfDecision.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public class Result extends BasicRelationProperties {
+public class PropertiesResult extends BasicRelationProperties {
 
 	private List<RelationObj> Pr;
 	private List<RelationObj> Ir;
@@ -24,14 +21,14 @@ public class Result extends BasicRelationProperties {
 	private HashMap<Integer, HashMap<Integer, List<Integer>>> negativeTransitivityExclusion;
 	private HashMap<Integer, List<Integer>> negativeSlice;
 
-	public Result(List<List<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
+	public PropertiesResult(List<List<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
 		super(inputedMatrix);
 		this.Pr = pr;
 		this.Ir = ir;
 		this.slice = slice;
 	}
 
-	public Result(List<?> inputedMatrix) {
+	public PropertiesResult(List<?> inputedMatrix) {
 		super(inputedMatrix);
 		Pr = new ArrayList<>();
 		transitivityExclusion = new HashMap<>();

@@ -10,7 +10,7 @@ package org.kpi.TheoryOfDecision.service;
 
 
 import org.kpi.TheoryOfDecision.entity.RelationObj;
-import org.kpi.TheoryOfDecision.entity.Result;
+import org.kpi.TheoryOfDecision.entity.PropertiesResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -23,12 +23,12 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class PropertyAnalyser {
+public class BinaryRelationPropertyAnalyser {
 
-    private static final Logger logger = LoggerFactory.getLogger(PropertyAnalyser.class);
+    private static final Logger logger = LoggerFactory.getLogger(BinaryRelationPropertyAnalyser.class);
 
-	public Result getBasicProperties(ArrayList<ArrayList<Integer>> matrix) {
-		Result res = new Result(matrix);
+	public PropertiesResult getBasicProperties(ArrayList<ArrayList<Integer>> matrix) {
+		PropertiesResult res = new PropertiesResult(matrix);
 		ArrayList<RelationObj> Pr = new ArrayList<>();
 		ArrayList<RelationObj> Ir = new ArrayList<>();
 		ArrayList<RelationObj> Nr = new ArrayList<>();
@@ -100,7 +100,7 @@ public class PropertyAnalyser {
 		return true;
 	}
 
-	private boolean checkTransitivityProperties(Result result) {
+	private boolean checkTransitivityProperties(PropertiesResult result) {
 		try {
 
 

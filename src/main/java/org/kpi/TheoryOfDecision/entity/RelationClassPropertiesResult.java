@@ -1,24 +1,23 @@
 /*
  * Copyright (c)  2.2020
- * This file (RelationClassResult) is part of BinaryRelationPropertyAnalyser.
+ * This file (RelationClassPropertiesResult) is part of BinaryRelationPropertyAnalyser.
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
  * Written by Screamer  <999screamer999@gmail.com>
  */
-
 package org.kpi.TheoryOfDecision.entity;
 
 import java.util.List;
 
-public class RelationClassResult extends Result {
+public class RelationClassPropertiesResult extends PropertiesResult {
 
 	private String className;
 
-	public RelationClassResult(List<?> inputedMatrix) {
+	public RelationClassPropertiesResult(List<?> inputedMatrix) {
 		super(inputedMatrix);
 	}
 
-	public RelationClassResult(List<?> inputedMatrix, String className) {
+	public RelationClassPropertiesResult(List<?> inputedMatrix, String className) {
 		super(inputedMatrix);
 		this.className = className;
 	}
@@ -31,6 +30,5 @@ public class RelationClassResult extends Result {
 			// TODO: 13.02.2020 find biggest on relation
 		}
 		//maximum element
-
 	}
 }
