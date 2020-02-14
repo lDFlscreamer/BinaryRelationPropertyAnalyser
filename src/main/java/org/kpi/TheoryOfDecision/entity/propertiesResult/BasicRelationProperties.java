@@ -5,7 +5,7 @@
  * Proprietary and confidential
  * Written by Screamer  <999screamer999@gmail.com>
  */
-package org.kpi.TheoryOfDecision.entity;
+package org.kpi.TheoryOfDecision.entity.propertiesResult;
 
 import java.util.List;
 

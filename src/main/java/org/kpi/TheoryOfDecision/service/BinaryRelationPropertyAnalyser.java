@@ -10,7 +10,7 @@ package org.kpi.TheoryOfDecision.service;
 
 
 import org.kpi.TheoryOfDecision.entity.RelationObj;
-import org.kpi.TheoryOfDecision.entity.PropertiesResult;
+import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

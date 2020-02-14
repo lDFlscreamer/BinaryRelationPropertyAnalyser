@@ -5,7 +5,10 @@
  * Proprietary and confidential
  * Written by Screamer  <999screamer999@gmail.com>
  */
-package org.kpi.TheoryOfDecision.entity;
+package org.kpi.TheoryOfDecision.entity.propertiesResult;
+
+import org.kpi.TheoryOfDecision.entity.RelationObj;
+import org.kpi.TheoryOfDecision.entity.propertiesResult.BasicRelationProperties;
 
 import java.util.ArrayList;
 import java.util.HashMap;

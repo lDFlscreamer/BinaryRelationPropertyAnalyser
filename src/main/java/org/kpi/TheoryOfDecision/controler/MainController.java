@@ -8,7 +8,7 @@
 
 package org.kpi.TheoryOfDecision.controler;
 
-import org.kpi.TheoryOfDecision.entity.PropertiesResult;
+import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 import org.kpi.TheoryOfDecision.service.BinaryRelationPropertyAnalyser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

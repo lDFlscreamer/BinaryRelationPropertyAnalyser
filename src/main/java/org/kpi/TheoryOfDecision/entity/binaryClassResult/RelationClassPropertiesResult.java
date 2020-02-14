@@ -5,7 +5,9 @@
  * Proprietary and confidential
  * Written by Screamer  <999screamer999@gmail.com>
  */
-package org.kpi.TheoryOfDecision.entity;
+package org.kpi.TheoryOfDecision.entity.binaryClassResult;
+
+import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class RelationClassPropertiesResult extends PropertiesResult {
 	public void ClassAnalyser() {
 		//biggest
 		if (this.getIr().isEmpty()) {
-			// TODO: 13.02.2020 find biggest on asimmetry part
+			// TODO: 13.02.2020 find biggest on asymmetry part
 		} else {
 			// TODO: 13.02.2020 find biggest on relation
 		}

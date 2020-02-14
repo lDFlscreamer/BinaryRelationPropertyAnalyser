@@ -7,8 +7,8 @@
  */
 package org.kpi.TheoryOfDecision.service;
 
-import org.kpi.TheoryOfDecision.entity.PropertiesResult;
-import org.kpi.TheoryOfDecision.entity.RawResult;
+import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
+import org.kpi.TheoryOfDecision.entity.propertiesResult.RawResult;
 import org.kpi.TheoryOfDecision.entity.RelationObj;
 import org.springframework.stereotype.Service;
 
