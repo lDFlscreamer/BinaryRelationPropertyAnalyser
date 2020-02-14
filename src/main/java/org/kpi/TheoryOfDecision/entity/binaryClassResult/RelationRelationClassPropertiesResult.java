@@ -11,15 +11,15 @@ import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 
 import java.util.List;
 
-public class RelationClassPropertiesResult extends PropertiesResult {
+public class RelationRelationClassPropertiesResult extends PropertiesResult {
 
 	private String className;
 
-	public RelationClassPropertiesResult(List<?> inputedMatrix) {
+	public RelationRelationClassPropertiesResult(List<?> inputedMatrix) {
 		super(inputedMatrix);
 	}
 
-	public RelationClassPropertiesResult(List<?> inputedMatrix, String className) {
+	public RelationRelationClassPropertiesResult(List<?> inputedMatrix, String className) {
 		super(inputedMatrix);
 		this.className = className;
 	}

@@ -5,7 +5,7 @@
  * Proprietary and confidential
  * Written by Screamer  <999screamer999@gmail.com>
  */
-package org.kpi.TheoryOfDecision.service;
+package org.kpi.TheoryOfDecision.service.Converter;
 
 import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 import org.kpi.TheoryOfDecision.entity.propertiesResult.RawResult;
@@ -57,7 +57,7 @@ public class ResultConverter {
 		rawResult.setNegativeSlice(sliceToString(result.getNegativeSlice()));
 
 		rawResult.setReflectivity(result.isReflectivity());
-		rawResult.setAntireflectivity(result.isAntireflectivity());
+		rawResult.setAntireflective(result.isAntireflective());
 
 		rawResult.setSymmetry(result.isSymmetry());
 		rawResult.setAsymmetry(result.isAsymmetry());
@@ -65,7 +65,7 @@ public class ResultConverter {
 
 		rawResult.setConnectedness(result.isConnectedness());
 		rawResult.setWeakConnectedness(result.isWeakConnectedness());
-		rawResult.setAcyclicity(result.isAcyclicity());
+		rawResult.setAcyclic(result.isAcyclic());
 
 		rawResult.setTransitivity(result.isTransitivity());
 		rawResult.setNegativeTransitivity(result.isNegativeTransitivity());

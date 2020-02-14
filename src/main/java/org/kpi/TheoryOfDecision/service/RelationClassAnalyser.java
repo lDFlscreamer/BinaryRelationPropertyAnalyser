@@ -8,11 +8,20 @@
 
 package org.kpi.TheoryOfDecision.service;
 
+import org.kpi.TheoryOfDecision.constant.Constant;
+import org.kpi.TheoryOfDecision.entity.binaryClassResult.RelationRelationClassPropertiesResult;
+import org.kpi.TheoryOfDecision.entity.propertiesResult.BinaryRelationClass;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 
 @Service
 public class RelationClassAnalyser {
 
 
+	public void detectClass(RelationRelationClassPropertiesResult inputed){
 
+
+
+	}
 }

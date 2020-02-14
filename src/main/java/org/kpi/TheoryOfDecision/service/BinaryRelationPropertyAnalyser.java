@@ -71,7 +71,7 @@ public class BinaryRelationPropertyAnalyser {
 		res.setIr(Ir);
 		res.setNr(Nr);
 		res.setReflectivity(refl);
-		res.setAntireflectivity(antirefl);
+		res.setAntireflective(antirefl);
 		res.setNegativeSlice(negativeSlice);
 		checkTransitivityProperties(res);
 		return res;
@@ -102,17 +102,15 @@ public class BinaryRelationPropertyAnalyser {
 
 	private boolean checkTransitivityProperties(PropertiesResult result) {
 		try {
-
-
 			List<RelationObj> Pr = result.getPr();
 			List<RelationObj> Ir = result.getIr();
 			List<RelationObj> Nr = result.getNr();
-			boolean antireflectivity = result.isAntireflectivity();
+			boolean antireflective = result.isAntireflective();
 			boolean reflectivity = result.isReflectivity();
 
 			boolean symmetry = Pr.isEmpty() && (!Ir.isEmpty());
 			boolean antisymmetry = (Ir.isEmpty() || reflectivity) && (!Pr.isEmpty());
-			boolean asymmetry = antisymmetry && (antireflectivity);
+			boolean asymmetry = antisymmetry && (antireflective);
 
 			Predicate<RelationObj> nonDiagonal = rel -> rel.getFirst() != rel.getSecond();
 			List<RelationObj> NrWithOutDiagonal = Nr.stream().filter(nonDiagonal).collect(Collectors.toList());
