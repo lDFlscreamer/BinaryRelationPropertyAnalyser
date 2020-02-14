@@ -14,7 +14,6 @@ import java.util.HashMap;
 
 public class Constant {
 	public final static HashMap<String, BinaryRelationClass> BINARY_CLASSES = new HashMap<>();
-
 	static {
 		BINARY_CLASSES.put("Equivalence", new BinaryRelationClass(true, false, true, false, false, true, false, false, false, false)); //Equivalence
 		BINARY_CLASSES.put("strict order", new BinaryRelationClass(false, true, false, true, false, true, false, false, false, true));//strict order
