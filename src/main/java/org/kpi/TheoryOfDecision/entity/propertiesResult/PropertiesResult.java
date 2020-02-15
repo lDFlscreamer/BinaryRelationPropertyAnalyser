@@ -15,14 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PropertiesResult extends BasicRelationProperties {
-
-	private List<RelationObj> Pr;
-	private List<RelationObj> Ir;
-	private List<RelationObj> Nr;
-	private HashMap<Integer, List<Integer>> slice;
-	private HashMap<Integer, HashMap<Integer, List<Integer>>> transitivityExclusion;
-	private HashMap<Integer, HashMap<Integer, List<Integer>>> negativeTransitivityExclusion;
-	private HashMap<Integer, List<Integer>> negativeSlice;
+	protected List<RelationObj> Pr;
+	protected List<RelationObj> Ir;
+	protected List<RelationObj> Nr;
+	protected HashMap<Integer, List<Integer>> slice;
+	protected HashMap<Integer, HashMap<Integer, List<Integer>>> transitivityExclusion;
+	protected HashMap<Integer, HashMap<Integer, List<Integer>>> negativeTransitivityExclusion;
+	protected HashMap<Integer, List<Integer>> negativeSlice;
 
 	public PropertiesResult(List<List<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
 		super(inputedMatrix);

@@ -12,6 +12,7 @@ import org.kpi.TheoryOfDecision.entity.binaryClassResult.RelationRelationClassPr
 import org.kpi.TheoryOfDecision.entity.propertiesResult.BinaryRelationClass;
 import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 import org.kpi.TheoryOfDecision.service.BinaryRelationPropertyAnalyser;
+import org.kpi.TheoryOfDecision.service.RelationClassAnalyser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class MainController {
 
 	@Autowired
 	private BinaryRelationPropertyAnalyser propertyAnalyser;
+	@Autowired
+	private RelationClassAnalyser classAnalyser;
 
 
 	@GetMapping("/AnalyseRelation")
@@ -50,13 +53,6 @@ public class MainController {
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
 	public Set<Map.Entry<String, BinaryRelationClass>> test() {
 		HashMap<String, BinaryRelationClass> test=new HashMap<>();
-		test.put("Equivalence",new BinaryRelationClass(true,false,true,false,false,true,false,false,false,false)); //Equivalence
-		test.put("strict order",new BinaryRelationClass(false,true,false,true,false,true,false,false,false,true));//strict order
-		test.put("unbending order",new BinaryRelationClass(true,false,false,false,true,true,false,false,false,false));//unbending order
-		test.put("quasi order",new BinaryRelationClass(true,false,false,false,false,true,false,false,false,false));//quasi order
-		test.put("poor order",new BinaryRelationClass(false,false,false,true,false,true,true,false,false,true));//poor order
-		test.put("tolerance order",new BinaryRelationClass(true,false,true,false,false,false,false,false,false,false));//tolerance order
-
 		return test.entrySet();
 	}
 
@@ -67,8 +63,9 @@ public class MainController {
 		if (matrix == null) {
 			return null;
 		}
-		PropertiesResult result=new RelationRelationClassPropertiesResult((ArrayList<ArrayList<Integer>>) matrix);
-		result = propertyAnalyser.getBasicProperties(result);
+		RelationRelationClassPropertiesResult result = new RelationRelationClassPropertiesResult((ArrayList<ArrayList<Integer>>) matrix);
+		result = (RelationRelationClassPropertiesResult) propertyAnalyser.getBasicProperties(result);
+		result.setClassName(classAnalyser.detectClass(result));
 		logger.info("Analyse matrix ");
 		return result;
 	}

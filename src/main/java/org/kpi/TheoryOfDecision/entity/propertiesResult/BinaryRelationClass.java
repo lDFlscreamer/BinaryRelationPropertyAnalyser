@@ -8,7 +8,9 @@
 
 package org.kpi.TheoryOfDecision.entity.propertiesResult;
 
-public class BinaryRelationClass {
+import java.lang.reflect.Field;
+
+public class BinaryRelationClass  implements Comparable<BinaryRelationClass>{
 	protected boolean reflectivity;
 	protected boolean antireflective;
 	protected boolean symmetry;
@@ -114,5 +116,26 @@ public class BinaryRelationClass {
 
 	public void setNegativeTransitivity(boolean negativeTransitivity) {
 		this.negativeTransitivity = negativeTransitivity;
+	}
+
+	@Override
+	public int compareTo(BinaryRelationClass binaryRelationClass) {
+		Field[] fields = this.getClass().getDeclaredFields();
+		Integer thisFields= 0;
+		Integer anotherFields= 0;
+		for (Field f:
+			 fields) {
+			try {
+				if(f.getBoolean(this)){
+					++thisFields;
+				}
+				if(f.getBoolean(binaryRelationClass)){
+					++anotherFields;
+				}
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+		return thisFields.compareTo(anotherFields);
 	}
 }
