@@ -20,7 +20,7 @@ public class Constant {
 		BINARY_CLASSES.put(new BinaryRelationClass(false, true, false, true, false, true, false, false, false, true), "strict order");//strict order
 		BINARY_CLASSES.put(new BinaryRelationClass(true, false, false, false, true, true, false, false, false, false), "unbending order");//unbending order
 		BINARY_CLASSES.put(new BinaryRelationClass(true, false, false, false, false, true, false, false, false, false), "quasi order");//quasi order
-		BINARY_CLASSES.put(new BinaryRelationClass(false, false, false, true, false, true, true, false, false, true), "poor order");//poor order
+		BINARY_CLASSES.put(new BinaryRelationClass(false, false, false, true, false, true, true, false, false, false), "poor order");//poor order
 		BINARY_CLASSES.put(new BinaryRelationClass(true, false, true, false, false, false, false, false, false, false), "tolerance order");//tolerance order
 	}
 }

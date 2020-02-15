@@ -120,6 +120,7 @@ public class BinaryRelationPropertyAnalyser {
 			boolean transitivity = checkTransitivity(result.getSlice(), result.getTransitivityExclusion());
 			boolean negativeTransitivity = checkTransitivity(result.getNegativeSlice(), result.getNegativeTransitivityExclusion());
 
+			boolean aCyclic=checkAcyclic(result.getSlice(),result.getCycleExclusion());
 			result.setSymmetry(symmetry);
 			result.setAsymmetry(asymmetry);
 			result.setAntisymmetry(antisymmetry);
@@ -127,10 +128,46 @@ public class BinaryRelationPropertyAnalyser {
 			result.setWeakConnectedness(weakConnectedness);
 			result.setTransitivity(transitivity);
 			result.setNegativeTransitivity(negativeTransitivity);
+			result.setAcyclic(aCyclic);
+
 			return true;
 		} catch (Exception e) {
 			logger.error(String.format("Cause error: %s", e.getMessage()), e);
 		}
 		return false;
+	}
+
+
+	public List<Integer> checkAcyclicitaration(List<Integer> current, HashMap<Integer, List<Integer>> slice) {
+		List<Integer> forCheck;
+		forCheck = current.isEmpty() ? new ArrayList<>() : slice.getOrDefault(current.get(current.size() - 1),new ArrayList<>());
+		for (Integer i :
+				forCheck) {
+			if (current.contains(i)) {
+				current.add(i);
+				return current;
+			}
+			List<Integer> iteration = new ArrayList<>(current);
+			iteration.add(i);
+			List<Integer> result = checkAcyclicitaration(iteration, slice);
+			if (!result.isEmpty()) {
+				return result;
+			}
+		}
+		return new ArrayList<>();
+	}
+
+	public boolean checkAcyclic(HashMap<Integer, List<Integer>> slice, List<Integer> exclusion) {
+		for (Integer i :
+				slice.keySet()) {
+			List<Integer> current = new ArrayList<>();
+			current.add(i);
+			List<Integer> exclusionIteration = checkAcyclicitaration(current, slice);
+			if (!exclusionIteration.isEmpty()) {
+				exclusion.addAll(exclusionIteration);
+				return false;
+			}
+		}
+		return true;
 	}
 }

@@ -48,7 +48,11 @@ public class RelationClassAnalyser {
 	public String detectClass(RelationRelationClassPropertiesResult inputed) {
 		Collection<BinaryRelationClass> classes = Constant.BINARY_CLASSES.keySet();
 		Stream<BinaryRelationClass> classStream = classes.stream();
-		List<BinaryRelationClass> detectedClass = checkAllParameter(classStream, inputed).sorted().collect(Collectors.toList());
+		List<BinaryRelationClass> detectedClass = checkAllParameter(classStream, inputed).sorted()
+				.collect(Collectors.toList());
+		if(detectedClass.isEmpty()){
+			return "does not belong to the class";
+		}
 		BinaryRelationClass last = detectedClass.get(detectedClass.size() - 1);
 		return Constant.BINARY_CLASSES.getOrDefault(last,"does not belong to the class");
 	}
