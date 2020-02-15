@@ -50,6 +50,6 @@ public class RelationClassAnalyser {
 		Stream<BinaryRelationClass> classStream = classes.stream();
 		List<BinaryRelationClass> detectedClass = checkAllParameter(classStream, inputed).sorted().collect(Collectors.toList());
 		BinaryRelationClass last = detectedClass.get(detectedClass.size() - 1);
-		return Constant.BINARY_CLASSES.get(last);
+		return Constant.BINARY_CLASSES.getOrDefault(last,"does not belong to the class");
 	}
 }
