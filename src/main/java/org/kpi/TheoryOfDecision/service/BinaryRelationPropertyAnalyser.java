@@ -28,7 +28,7 @@ public class BinaryRelationPropertyAnalyser {
 	private static final Logger logger = LoggerFactory.getLogger(BinaryRelationPropertyAnalyser.class);
 
 	public PropertiesResult getBasicProperties(PropertiesResult res) {
-		List<List<Integer>> matrix = res.getMatrix();
+		List<ArrayList<Integer>> matrix = res.getMatrix();
 		ArrayList<RelationObj> Pr = new ArrayList<>();
 		ArrayList<RelationObj> Ir = new ArrayList<>();
 		ArrayList<RelationObj> Nr = new ArrayList<>();
@@ -109,7 +109,7 @@ public class BinaryRelationPropertyAnalyser {
 			boolean reflectivity = result.isReflectivity();
 
 			boolean symmetry = Pr.isEmpty() && (!Ir.isEmpty());
-			boolean antisymmetry = (Ir.isEmpty() || reflectivity) && (!Pr.isEmpty());
+			boolean antisymmetry = Ir.isEmpty() || reflectivity;
 			boolean asymmetry = antisymmetry && (antireflective);
 
 			Predicate<RelationObj> nonDiagonal = rel -> rel.getFirst() != rel.getSecond();
@@ -120,7 +120,7 @@ public class BinaryRelationPropertyAnalyser {
 			boolean transitivity = checkTransitivity(result.getSlice(), result.getTransitivityExclusion());
 			boolean negativeTransitivity = checkTransitivity(result.getNegativeSlice(), result.getNegativeTransitivityExclusion());
 
-			boolean aCyclic=checkAcyclic(result.getSlice(),result.getCycleExclusion());
+			boolean aCyclic = checkAcyclic(result.getSlice(), result.getCycleExclusion());
 			result.setSymmetry(symmetry);
 			result.setAsymmetry(asymmetry);
 			result.setAntisymmetry(antisymmetry);
@@ -140,7 +140,7 @@ public class BinaryRelationPropertyAnalyser {
 
 	public List<Integer> checkAcyclicitaration(List<Integer> current, HashMap<Integer, List<Integer>> slice) {
 		List<Integer> forCheck;
-		forCheck = current.isEmpty() ? new ArrayList<>() : slice.getOrDefault(current.get(current.size() - 1),new ArrayList<>());
+		forCheck = current.isEmpty() ? new ArrayList<>() : slice.getOrDefault(current.get(current.size() - 1), new ArrayList<>());
 		for (Integer i :
 				forCheck) {
 			if (current.contains(i)) {

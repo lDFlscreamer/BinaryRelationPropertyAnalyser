@@ -7,16 +7,17 @@
  */
 package org.kpi.TheoryOfDecision.entity.propertiesResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BasicRelationProperties extends BinaryRelationClass {
-	private final List<List<Integer>> matrix;
+	private final List<ArrayList<Integer>> matrix;
 
-	public BasicRelationProperties(List<List<Integer>> matrix) {
+	public BasicRelationProperties(List<ArrayList<Integer>> matrix) {
 		this.matrix = matrix;
 	}
 
-	public List<List<Integer>> getMatrix() {
+	public List<ArrayList<Integer>> getMatrix() {
 		return matrix;
 	}
 }

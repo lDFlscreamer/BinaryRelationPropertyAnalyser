@@ -23,13 +23,13 @@ public class PropertiesResult extends BasicRelationProperties {
 	protected List<Integer> cycleExclusion;
 	protected HashMap<Integer, List<Integer>> negativeSlice;
 
-	public PropertiesResult(List<List<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
+	public PropertiesResult(List<ArrayList<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
 		super(inputedMatrix);
 		this.Pr = pr;
 		this.Ir = ir;
 		this.slice = slice;
 	}
-	public PropertiesResult(List<List<Integer>> inputedMatrix) {
+	public PropertiesResult(List<ArrayList<Integer>> inputedMatrix) {
 		super(inputedMatrix);
 		Pr = new ArrayList<>();
 		transitivityExclusion = new HashMap<>();

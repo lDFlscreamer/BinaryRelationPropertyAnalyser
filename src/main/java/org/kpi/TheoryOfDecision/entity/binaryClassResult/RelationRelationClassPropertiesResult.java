@@ -7,19 +7,22 @@
  */
 package org.kpi.TheoryOfDecision.entity.binaryClassResult;
 
+import org.kpi.TheoryOfDecision.entity.RelationObj;
 import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class RelationRelationClassPropertiesResult extends PropertiesResult {
 
 	private String className;
 
-	public RelationRelationClassPropertiesResult(List<?> inputedMatrix) {
+	public RelationRelationClassPropertiesResult(List<ArrayList<Integer>> inputedMatrix) {
 		super(inputedMatrix);
 	}
 
-	public RelationRelationClassPropertiesResult(List<?> inputedMatrix, String className) {
+	public RelationRelationClassPropertiesResult(List<ArrayList<Integer>> inputedMatrix, String className) {
 		super(inputedMatrix);
 		this.className = className;
 	}
