@@ -7,28 +7,31 @@
  */
 package org.kpi.TheoryOfDecision.entity.propertiesResult;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.kpi.TheoryOfDecision.entity.RelationObj;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PropertiesResult extends BasicRelationProperties {
 	protected List<RelationObj> Pr;
 	protected List<RelationObj> Ir;
 	protected List<RelationObj> Nr;
-	protected HashMap<Integer, List<Integer>> slice;
+	protected HashMap<Integer, List<Integer>> negativeSlice;
 	protected HashMap<Integer, HashMap<Integer, List<Integer>>> transitivityExclusion;
 	protected HashMap<Integer, HashMap<Integer, List<Integer>>> negativeTransitivityExclusion;
 	protected List<Integer> cycleExclusion;
-	protected HashMap<Integer, List<Integer>> negativeSlice;
+	protected HashMap<Integer, List<Integer>> positiveSlice;
 
-	public PropertiesResult(List<ArrayList<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> slice) {
+	public PropertiesResult(List<ArrayList<Integer>> inputedMatrix, List<RelationObj> pr, List<RelationObj> ir, HashMap<Integer, List<Integer>> negativeSlice) {
 		super(inputedMatrix);
 		this.Pr = pr;
 		this.Ir = ir;
-		this.slice = slice;
+		this.negativeSlice = negativeSlice;
 	}
+
 	public PropertiesResult(List<ArrayList<Integer>> inputedMatrix) {
 		super(inputedMatrix);
 		Pr = new ArrayList<>();
@@ -36,6 +39,14 @@ public class PropertiesResult extends BasicRelationProperties {
 		negativeTransitivityExclusion = new HashMap<>();
 		cycleExclusion = new ArrayList<>();
 		Ir = new ArrayList<>();
+	}
+
+	public HashMap<Integer, List<Integer>> getPositiveSlice() {
+		return positiveSlice;
+	}
+
+	public void setPositiveSlice(HashMap<Integer, List<Integer>> positiveSlice) {
+		this.positiveSlice = positiveSlice;
 	}
 
 	public List<Integer> getCycleExclusion() {
@@ -54,13 +65,6 @@ public class PropertiesResult extends BasicRelationProperties {
 		Nr = nr;
 	}
 
-	public HashMap<Integer, List<Integer>> getNegativeSlice() {
-		return negativeSlice;
-	}
-
-	public void setNegativeSlice(HashMap<Integer, List<Integer>> negativeSlice) {
-		this.negativeSlice = negativeSlice;
-	}
 
 	public List<RelationObj> getPr() {
 		return Pr;
@@ -78,12 +82,12 @@ public class PropertiesResult extends BasicRelationProperties {
 		Ir = ir;
 	}
 
-	public HashMap<Integer, List<Integer>> getSlice() {
-		return slice;
+	public HashMap<Integer, List<Integer>> getNegativeSlice() {
+		return negativeSlice;
 	}
 
-	public void setSlice(HashMap<Integer, List<Integer>> slice) {
-		this.slice = slice;
+	public void setNegativeSlice(HashMap<Integer, List<Integer>> negativeSlice) {
+		this.negativeSlice = negativeSlice;
 	}
 
 	public HashMap<Integer, HashMap<Integer, List<Integer>>> getTransitivityExclusion() {

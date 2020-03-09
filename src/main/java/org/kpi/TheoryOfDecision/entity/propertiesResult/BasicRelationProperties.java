@@ -7,11 +7,13 @@
  */
 package org.kpi.TheoryOfDecision.entity.propertiesResult;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class BasicRelationProperties extends BinaryRelationClass {
-	private final List<ArrayList<Integer>> matrix;
+	private  List<ArrayList<Integer>> matrix;
 
 	public BasicRelationProperties(List<ArrayList<Integer>> matrix) {
 		this.matrix = matrix;
@@ -19,5 +21,9 @@ public class BasicRelationProperties extends BinaryRelationClass {
 
 	public List<ArrayList<Integer>> getMatrix() {
 		return matrix;
+	}
+
+	public void setMatrix(List<ArrayList<Integer>> matrix) {
+		this.matrix = matrix;
 	}
 }

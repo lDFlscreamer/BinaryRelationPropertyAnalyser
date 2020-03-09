@@ -53,8 +53,7 @@ public class ResultConverter {
 		rawResult.setIr(relationPartToString(result.getIr()));
 		rawResult.setNr(relationPartToString(result.getNr()));
 
-		rawResult.setSlice(sliceToString(result.getSlice()));
-		rawResult.setNegativeSlice(sliceToString(result.getNegativeSlice()));
+		rawResult.setSlice(sliceToString(result.getNegativeSlice()));
 
 		rawResult.setReflectivity(result.isReflectivity());
 		rawResult.setAntireflective(result.isAntireflective());

@@ -8,9 +8,11 @@
 
 package org.kpi.TheoryOfDecision.entity.propertiesResult;
 
-import java.lang.reflect.Field;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class BinaryRelationClass  implements Comparable<BinaryRelationClass>{
+import java.lang.reflect.Field;
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class BinaryRelationClass implements Comparable<BinaryRelationClass> {
 	protected boolean reflectivity;
 	protected boolean antireflective;
 	protected boolean symmetry;
@@ -121,15 +123,15 @@ public class BinaryRelationClass  implements Comparable<BinaryRelationClass>{
 	@Override
 	public int compareTo(BinaryRelationClass binaryRelationClass) {
 		Field[] fields = this.getClass().getDeclaredFields();
-		Integer thisFields= 0;
-		Integer anotherFields= 0;
-		for (Field f:
-			 fields) {
+		Integer thisFields = 0;
+		Integer anotherFields = 0;
+		for (Field f :
+				fields) {
 			try {
-				if(f.getBoolean(this)){
+				if (f.getBoolean(this)) {
 					++thisFields;
 				}
-				if(f.getBoolean(binaryRelationClass)){
+				if (f.getBoolean(binaryRelationClass)) {
 					++anotherFields;
 				}
 			} catch (IllegalAccessException e) {

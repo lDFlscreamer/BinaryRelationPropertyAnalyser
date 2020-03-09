@@ -11,8 +11,10 @@ package org.kpi.TheoryOfDecision.service;
 
 import org.kpi.TheoryOfDecision.entity.RelationObj;
 import org.kpi.TheoryOfDecision.entity.propertiesResult.PropertiesResult;
+import org.kpi.TheoryOfDecision.service.Converter.RelationListConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ import java.util.stream.Collectors;
 public class BinaryRelationPropertyAnalyser {
 
 	private static final Logger logger = LoggerFactory.getLogger(BinaryRelationPropertyAnalyser.class);
+	@Autowired
+	private RelationListConverter relationListConverter;
 
 	public PropertiesResult getBasicProperties(PropertiesResult res) {
 		List<ArrayList<Integer>> matrix = res.getMatrix();
@@ -34,6 +38,7 @@ public class BinaryRelationPropertyAnalyser {
 		ArrayList<RelationObj> Nr = new ArrayList<>();
 		HashMap<Integer, List<Integer>> slice = new HashMap<>();
 		HashMap<Integer, List<Integer>> negativeSlice = new HashMap<>();
+		HashMap<Integer, List<Integer>> positiveSlice = new HashMap<>();
 		boolean refl = true;
 		boolean antirefl = true;
 
@@ -51,10 +56,14 @@ public class BinaryRelationPropertyAnalyser {
 					} else {
 						Pr.add(new RelationObj(i + 1, j + 1));
 					}
-					List<Integer> currentSlice;
-					currentSlice = slice.getOrDefault(i + 1, new ArrayList<>());
-					currentSlice.add(j + 1);
-					slice.put(i + 1, currentSlice);
+					List<Integer> currentNegativeSlice;
+					List<Integer> currentPositiveSlice;
+					currentNegativeSlice = slice.getOrDefault(i + 1, new ArrayList<>());
+					currentPositiveSlice = positiveSlice.getOrDefault(j + 1, new ArrayList<>());
+					currentNegativeSlice.add(j + 1);
+					currentPositiveSlice.add(i+1);
+					slice.put(i + 1, currentNegativeSlice);
+					positiveSlice.put(j+1,currentPositiveSlice);
 				} else {
 					if (symetricalElement.equals(element)) {
 						Nr.add(new RelationObj(i + 1, j + 1));
@@ -66,13 +75,13 @@ public class BinaryRelationPropertyAnalyser {
 				}
 			}
 		}
-		res.setSlice(slice);
+		res.setNegativeSlice(slice);
 		res.setPr(Pr);
 		res.setIr(Ir);
 		res.setNr(Nr);
 		res.setReflectivity(refl);
 		res.setAntireflective(antirefl);
-		res.setNegativeSlice(negativeSlice);
+		res.setPositiveSlice(positiveSlice);
 		checkTransitivityProperties(res);
 		return res;
 	}
@@ -117,10 +126,11 @@ public class BinaryRelationPropertyAnalyser {
 			boolean connectedness = Nr.isEmpty();
 			boolean weakConnectedness = NrWithOutDiagonal.isEmpty();
 
-			boolean transitivity = checkTransitivity(result.getSlice(), result.getTransitivityExclusion());
-			boolean negativeTransitivity = checkTransitivity(result.getNegativeSlice(), result.getNegativeTransitivityExclusion());
+			boolean transitivity = checkTransitivity(result.getNegativeSlice(), result.getTransitivityExclusion());
+			HashMap<Integer, List<Integer>> negativeZeroSlice = relationListConverter.invertSlice(result.getMatrix().size(), result.getNegativeSlice());
+			boolean negativeTransitivity = checkTransitivity(negativeZeroSlice, result.getNegativeTransitivityExclusion());
 
-			boolean aCyclic = checkAcyclic(result.getSlice(), result.getCycleExclusion());
+			boolean aCyclic = checkAcyclic(result.getNegativeSlice(), result.getCycleExclusion());
 			result.setSymmetry(symmetry);
 			result.setAsymmetry(asymmetry);
 			result.setAntisymmetry(antisymmetry);
