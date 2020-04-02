@@ -10,6 +10,7 @@ package org.kpi.TheoryOfDecision.controler;
 
 import org.kpi.TheoryOfDecision.service.Converter.Normalizer;
 import org.kpi.TheoryOfDecision.service.Electre;
+import org.kpi.TheoryOfDecision.service.VIKOR;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ import java.util.stream.Collectors;
 public class RelationDetectController {
 	@Autowired
 	private Electre electre;
+	@Autowired
+	private VIKOR vikor;
 	@Autowired
 	private Normalizer normalizer;
 
@@ -97,7 +100,7 @@ public class RelationDetectController {
 
 	@PostMapping("/GetRelationViaVIKOR")
 	@ResponseStatus(value = HttpStatus.ACCEPTED)
-	public HashMap<String, List<?>> getRelationViaVIKOR(@RequestBody HashMap<String, Object> param) {
+	public HashMap<String, Object> getRelationViaVIKOR(@RequestBody HashMap<String, Object> param) {
 		Object matrix = param.getOrDefault("Matrix", null);
 		Object importance = param.getOrDefault("importance", null);
 		double d = (double) param.getOrDefault("d", null);
@@ -106,9 +109,10 @@ public class RelationDetectController {
 			return null;
 		}
 
-		HashMap<String, List<?>> result = new HashMap<>();
+		HashMap<String, Object> result = new HashMap<>();
 		List<Double> normalized = normalizer.normalize((List<Double>) importance);
-		result.put("Relation", normalized);
+		List<List<Double>> normalizeMatrix = normalizer.normalizeCriteial(((List<List<Double>>) matrix));
+		result.put("Relation", vikor.getRelation(normalizeMatrix,normalized,0.5));
 		return result;
 	}
 
