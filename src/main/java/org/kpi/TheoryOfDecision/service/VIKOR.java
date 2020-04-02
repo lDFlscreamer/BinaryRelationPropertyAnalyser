@@ -43,25 +43,25 @@ public class VIKOR {
 				maxR = maxInterval.stream().max(Double::compareTo).orElse(0.0),
 				minR = maxInterval.stream().min(Double::compareTo).orElse(1.0);
 		for (int i = 0; i < averageInterval.size(); i++) {
-			listQ.set(i,(v * (averageInterval.get(i) -minS)/(maxS-minS)) +((1-v)*(maxInterval.get(i) -minR)/(maxR-minR)));
+			listQ.set(i, (v * (averageInterval.get(i) - minS) / (maxS - minS)) + ((1 - v) * (maxInterval.get(i) - minR) / (maxR - minR)));
 		}
-		for (int i = 0; i <averageInterval.size() ; i++) {
+		for (int i = 0; i < averageInterval.size(); i++) {
 			ArrayList<Double> temp = new ArrayList<>();
-			temp.add(i*1.0);
+			temp.add(i * 1.0);
 			temp.add(listQ.get(i));
 			resultQ.add(temp);
 			temp = new ArrayList<>();
-			temp.add(i*1.0);
+			temp.add(i * 1.0);
 			temp.add(maxInterval.get(i));
 			resultR.add(temp);
 			temp = new ArrayList<>();
-			temp.add(i*1.0);
+			temp.add(i * 1.0);
 			temp.add(averageInterval.get(i));
 			resultS.add(temp);
 		}
-		resultQ=resultQ.stream().sorted(Comparator.comparing(doubles -> doubles.get(1))).collect(Collectors.toList());
-		resultS=resultS.stream().sorted(Comparator.comparing(doubles -> doubles.get(1))).collect(Collectors.toList());
-		resultR=resultR.stream().sorted(Comparator.comparing(doubles -> doubles.get(1))).collect(Collectors.toList());
-		return new VIKOR_Result(resultQ,resultR,resultS);
+		resultQ = resultQ.stream().sorted(Comparator.comparing(doubles -> doubles.get(1))).collect(Collectors.toList());
+		resultS = resultS.stream().sorted(Comparator.comparing(doubles -> doubles.get(1))).collect(Collectors.toList());
+		resultR = resultR.stream().sorted(Comparator.comparing(doubles -> doubles.get(1))).collect(Collectors.toList());
+		return new VIKOR_Result(resultQ, resultR, resultS);
 	}
 }
