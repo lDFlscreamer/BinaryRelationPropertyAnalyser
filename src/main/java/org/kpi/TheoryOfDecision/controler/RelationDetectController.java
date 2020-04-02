@@ -8,6 +8,7 @@
 
 package org.kpi.TheoryOfDecision.controler;
 
+import org.kpi.TheoryOfDecision.service.Converter.Normalizer;
 import org.kpi.TheoryOfDecision.service.Electre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,8 @@ import java.util.stream.Collectors;
 public class RelationDetectController {
 	@Autowired
 	private Electre electre;
+	@Autowired
+	private Normalizer normalizer;
 
 
 	@PostMapping("/ElectreConcorance")
@@ -91,4 +94,39 @@ public class RelationDetectController {
 		return arr.stream().map(s -> s.stream().map(Object::toString).reduce((s1, s2) -> s1.concat("\t\t\t,\t\t\t").concat(s2)).orElse(" ")).reduce((s, s2) -> s.concat("\n").concat(s2)).orElse("");
 
 	}
+
+	@PostMapping("/GetRelationViaVIKOR")
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public HashMap<String, List<?>> getRelationViaVIKOR(@RequestBody HashMap<String, Object> param) {
+		Object matrix = param.getOrDefault("Matrix", null);
+		Object importance = param.getOrDefault("importance", null);
+		double d = (double) param.getOrDefault("d", null);
+		double c = (double) param.getOrDefault("c", null);
+		if (matrix == null || importance == null) {
+			return null;
+		}
+
+		HashMap<String, List<?>> result = new HashMap<>();
+		List<Double> normalized = normalizer.normalize((List<Double>) importance);
+		result.put("Relation", normalized);
+		return result;
+	}
+
+	@PostMapping("/GetRelationViaTOPSIS")
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
+	public HashMap<String, List<?>> getRelationViaTOPSIS(@RequestBody HashMap<String, Object> param) {
+		Object matrix = param.getOrDefault("Matrix", null);
+		Object importance = param.getOrDefault("importance", null);
+		double d = (double) param.getOrDefault("d", null);
+		double c = (double) param.getOrDefault("c", null);
+		if (matrix == null || importance == null) {
+			return null;
+		}
+
+		HashMap<String, List<?>> result = new HashMap<>();
+		List<Double> normalized = normalizer.normalize((List<Double>) importance);
+		result.put("Relation", normalized);
+		return result;
+	}
+
 }
