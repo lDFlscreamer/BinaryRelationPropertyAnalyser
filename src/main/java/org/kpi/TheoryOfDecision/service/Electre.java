@@ -8,6 +8,7 @@
 
 package org.kpi.TheoryOfDecision.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,9 @@ import java.util.List;
 
 @Service
 public class Electre {
+
+	@Autowired
+	BinaryRelationPropertyAnalyser propertyAnalyser;
 
 	public List<Integer> findPart(ArrayList<Double> first, ArrayList<Double> second, int value) {
 		ArrayList<Integer> result = new ArrayList<>();
@@ -121,7 +125,7 @@ public class Electre {
 			for (int indexL2 = indexL1; indexL2 < criteria.size(); indexL2++) {
 				if (indexL1 == indexL2) {
 					List<Double> line = result.size() > indexL1 ? result.get(indexL1) : new ArrayList<>();
-					line.add(indexL1, Double.MIN_VALUE);
+					line.add(indexL1, Double.MAX_VALUE);
 					if (result.size() > indexL1) {
 						result.set(indexL1, line);
 					} else {
@@ -170,7 +174,7 @@ public class Electre {
 				Integer concordanceEl = concordance.get(i).get(j);
 				Integer dicordanceEl = discordance.get(i).get(j);
 				int element = concordanceEl * dicordanceEl;
-				line.add( element);
+				line.add(element);
 			}
 			result.add(line);
 		}
