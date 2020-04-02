@@ -106,8 +106,7 @@ public class RelationDetectController {
 	public HashMap<String, Object> getRelationViaVIKOR(@RequestBody HashMap<String, Object> param) {
 		Object matrix = param.getOrDefault("Matrix", null);
 		Object importance = param.getOrDefault("importance", null);
-		double d = (double) param.getOrDefault("d", null);
-		double c = (double) param.getOrDefault("c", null);
+		double v = (double) param.getOrDefault("v", null);
 		if (matrix == null || importance == null) {
 			return null;
 		}
@@ -115,7 +114,7 @@ public class RelationDetectController {
 		HashMap<String, Object> result = new HashMap<>();
 		List<Double> normalized = normalizer.normalize((List<Double>) importance);
 		List<List<Double>> normalizeMatrix = normalizer.normalizeCriteial(((List<List<Double>>) matrix));
-		result.put("Relation", vikor.getRelation(normalizeMatrix, normalized, 0.5));
+		result.put("Relation", vikor.getRelation(normalizeMatrix, normalized, v));
 		return result;
 	}
 
