@@ -117,8 +117,8 @@ public class BinaryRelationPropertyAnalyser {
 			boolean antireflective = result.isAntireflective();
 			boolean reflectivity = result.isReflectivity();
 
-			boolean symmetry = Pr.isEmpty() && (!Ir.isEmpty());
-			boolean antisymmetry = Ir.isEmpty() || reflectivity;
+			boolean symmetry = Pr.isEmpty();
+			boolean antisymmetry = Ir.stream().allMatch(s->s.getFirst()==s.getSecond());
 			boolean asymmetry = antisymmetry && (antireflective);
 
 			Predicate<RelationObj> nonDiagonal = rel -> rel.getFirst() != rel.getSecond();
