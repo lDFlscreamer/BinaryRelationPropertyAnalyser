@@ -8,7 +8,7 @@
 
 package org.kpi.TheoryOfDecision.entity;
 
-public class RelationObj {
+public class RelationObj implements Comparable<RelationObj> {
     private int first;
     private int second;
 
@@ -36,5 +36,10 @@ public class RelationObj {
 
     public void setSecond(int second) {
         this.second = second;
+    }
+
+    @Override
+    public int compareTo(RelationObj relationObj) {
+        return Integer.compare(this.getFirst(),relationObj.first);
     }
 }
